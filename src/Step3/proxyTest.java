@@ -1,11 +1,19 @@
 package Step3;
 
-abstract public class proxyTestSubject
-{//抽象角色：通过接口或抽象类声明真实角色实现的业务方法。
-    abstract public void request();
+public class proxyTest{
+	public static void main(String[] args) {
+		Subject sub=new ProxySubject();
+		sub.request();
+	}
 }
 
-class RealSubject extends proxyTestSubject
+
+abstract class Subject
+{//抽象角色：通过接口或抽象类声明真实角色实现的业务方法。
+    abstract void request();
+}
+
+class RealSubject extends Subject
 {//真实角色：实现抽象角色，定义真实角色所要实现的业务逻辑，供代理角色调用。
        public RealSubject()
        {
@@ -17,7 +25,7 @@ class RealSubject extends proxyTestSubject
        }
 }
 
-class ProxySubject extends proxyTestSubject
+class ProxySubject extends Subject
 {//代理角色：实现抽象角色，是真实角色的代理，通过真实角色的业务逻辑方法来实现抽象方法，并可以附加自己的操作。
     private RealSubject realSubject; //以真实角色作为代理角色的属性
       
@@ -46,6 +54,3 @@ class ProxySubject extends proxyTestSubject
         //something you want to do after requesting
     }
 }
-客户端调用：
-Subject sub=new ProxySubject();
-Sub.request();
