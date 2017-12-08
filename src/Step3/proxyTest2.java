@@ -15,12 +15,21 @@ public class proxyTest2{
 		DynamicSubject sub=new RealDynamicSubject();//之前这里sub的类型是RealDynamicSubject，不对；但是为什么呢？
 		Handler handler = new Handler(sub);
 		DynamicSubject sub2 = (DynamicSubject)Proxy.newProxyInstance(DynamicSubject.class.getClassLoader(), new Class[]{DynamicSubject.class}, handler); 
-		//DynamicSubject sub2 = (DynamicSubject)Proxy.newProxyInstance(DynamicSubject.class.getClassLoader(), DynamicSubject.class.getInterfaces(), handler);
-		//DynamicSubject.class.getInterfaces() 和 new Class[]{DynamicSubject.class}的区别是啥？
 		//CLassLoader loader:指定动态代理类的类加载器
 		//Class<?> interfaces:指定动态代理类需要实现的所有接口
 		//InvocationHandler h: 指定与动态代理类关联的 InvocationHandler对象
+		DynamicSubject sub3 = (DynamicSubject)Proxy.newProxyInstance(DynamicSubject.class.getClassLoader(), sub.getClass().getInterfaces(), handler);
+		
+		DynamicSubject sub4 = (DynamicSubject)Proxy.newProxyInstance(DynamicSubject.class.getClassLoader(), RealDynamicSubject.class.getInterfaces(), handler);
+		
+		System.out.println("sub.getClass() = "+sub.getClass());
+		System.out.println("DynamicSubject.class = " +DynamicSubject.class);
+		System.out.println(new Class[]{DynamicSubject.class});
+		System.out.println(RealDynamicSubject.class.getInterfaces());
+
 		sub2.request();
+		sub3.request();
+		sub4.request();
 	}
 }
 
