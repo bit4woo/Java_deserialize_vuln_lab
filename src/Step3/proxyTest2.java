@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
 /*
  * 代理模式的简单demo，动态代理，动态代理利用了反射机制
  * 每一个动态代理类都会有一个与之关联的invocation handler。真正的调用是在invocation handler的invoke()方法里完成的。
- * 感谢蝶离飞师傅的指导
+ * 感谢蝶离飞、廖新喜2为师傅的指导
  */
 
 public class proxyTest2{
