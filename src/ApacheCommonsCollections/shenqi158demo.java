@@ -18,7 +18,7 @@ import org.apache.commons.collections.functors.InvokerTransformer;
 import org.apache.commons.collections.map.TransformedMap;
 /*
  * this code from https://github.com/shengqi158
- * 见image.png
+ * 见image.png 感谢廖新喜师傅的指导
  */
 
 public class shenqi158demo {
