@@ -6,4 +6,5 @@ Java反序列化漏洞学习实践中的代码
 
 [Java反序列化漏洞学习实践二：Java的反射机制（Java Reflection）](http://code2sec.com/javafan-xu-lie-hua-lou-dong-xue-xi-shi-jian-er-javade-fan-she-ji-zhi-java-reflection.html)
 
-# 
+[Java反序列化漏洞学习实践三：理解java的动态代理机制](http://code2sec.com/javafan-xu-lie-hua-lou-dong-xue-xi-shi-jian-san-li-jie-javade-dong-tai-dai-li-ji-zhi.html)
+
