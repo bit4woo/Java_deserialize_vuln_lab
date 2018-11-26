@@ -12,32 +12,32 @@ import java.io.Serializable;
 public class deserTest implements Serializable {  
 	
     /**
-	 * ´´½¨Ò»¸ö¼òµ¥µÄ¿É±»ĞòÁĞ»¯µÄÀà£¬ËüµÄÊµÀı»¯ºóµÄ¶ÔÏó¾ÍÊÇ¿ÉÒÔ±»ĞòÁĞ»¯µÄ¡£
+	 * åˆ›å»ºä¸€ä¸ªç®€å•çš„å¯è¢«åºåˆ—åŒ–çš„ç±»ï¼Œå®ƒçš„å®ä¾‹åŒ–åçš„å¯¹è±¡å°±æ˜¯å¯ä»¥è¢«åºåˆ—åŒ–çš„ã€‚
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	private int n;  
     
-    public deserTest(int n){ //¹¹Ôìº¯Êı£¬³õÊ¼»¯Ê±Ö´ĞĞ
+    public deserTest(int n){ //æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ–æ—¶æ‰§è¡Œ
         this.n=n;
     }
     
     public static void main(String[] args) {
-    	deserTest x = new deserTest(5);//ÊµÀıÒ»¸ö¶ÔÏó
-    	operation.ser(x);//ĞòÁĞ»¯
-    	operation.deser();//·´ĞòÁĞ»¯
+    	deserTest x = new deserTest(5);//å®ä¾‹ä¸€ä¸ªå¯¹è±¡
+    	operation.ser(x);//åºåˆ—åŒ–
+    	operation.deser();//ååºåˆ—åŒ–
     }
 }
 
 class operation {
 	public static void ser(Object obj) {
-		//ĞòÁĞ»¯²Ù×÷£¬Ğ´Êı¾İ
+		//åºåˆ—åŒ–æ“ä½œï¼Œå†™æ•°æ®
 		try{
 	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("object.obj"));
-	        //ObjectOutputStreamÄÜ°ÑObjectÊä³ö³ÉByteÁ÷
-	        oos.writeObject(obj);//ĞòÁĞ»¯¹Ø¼üº¯Êı
-	        oos.flush();  //»º³åÁ÷ 
-	        oos.close(); //¹Ø±ÕÁ÷
+	        //ObjectOutputStreamèƒ½æŠŠObjectè¾“å‡ºæˆByteæµ
+	        oos.writeObject(obj);//åºåˆ—åŒ–å…³é”®å‡½æ•°
+	        oos.flush();  //ç¼“å†²æµ 
+	        oos.close(); //å…³é—­æµ
 	    } catch (FileNotFoundException e) 
 	    {        
 	        e.printStackTrace();
@@ -48,11 +48,11 @@ class operation {
 	}
 	
 	public static void deser() {
-		//·´ĞòÁĞ»¯²Ù×÷£¬¶ÁÈ¡Êı¾İ
+		//ååºåˆ—åŒ–æ“ä½œï¼Œè¯»å–æ•°æ®
 		try {
 			File file = new File("object.obj");
 			ObjectInputStream ois= new ObjectInputStream(new FileInputStream(file));
-			Object x = ois.readObject();//·´ĞòÁĞ»¯µÄ¹Ø¼üº¯Êı
+			Object x = ois.readObject();//ååºåˆ—åŒ–çš„å…³é”®å‡½æ•°
 			System.out.print(x);
 			ois.close();
 		} catch (FileNotFoundException e) {

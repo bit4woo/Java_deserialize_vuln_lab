@@ -3,8 +3,8 @@ package Step2;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 /*
- * ²âÊÔsetAccessible·½·¨£¬¿ÉÒÔÍ¨¹ı½«ËüÉèÖÃÎªtrue--setAccessible(true) À´·ÃÎÊprivateÊôĞÔºÍº¯Êı¡£
- * ¶øÇÒ¿ÉÒÔÌá¸ß³ÌĞòµÄÖ´ĞĞĞ§ÂÊ£¬ÒòÎª¼õÉÙÁË°²È«¼ì²é¡£
+ * æµ‹è¯•setAccessibleæ–¹æ³•ï¼Œå¯ä»¥é€šè¿‡å°†å®ƒè®¾ç½®ä¸ºtrue--setAccessible(true) æ¥è®¿é—®privateå±æ€§å’Œå‡½æ•°ã€‚
+ * è€Œä¸”å¯ä»¥æé«˜ç¨‹åºçš„æ‰§è¡Œæ•ˆç‡ï¼Œå› ä¸ºå‡å°‘äº†å®‰å…¨æ£€æŸ¥ã€‚
  */
 public class reflectionTest3 {
 	
@@ -14,18 +14,18 @@ public class reflectionTest3 {
 			Class clazz = Class.forName(path);
 			
 			//Method method = clazz.getMethod("setName",String.class);
-			//getMethodÖ»ÄÜ»ñÈ¡publicµÄ·½·¨£¬privateµÄ·½·¨ĞèÒªÊ¹ÓÃgetDeclaredMethodÀ´»ñÈ¡£¬²¢ÇÒÉèÖÃsetAccessible(true)²Å¿ÉÒÔµ÷ÓÃ·ÃÎÊ¡£
-			//²ÎÊıÊôĞÔÒ²ÊÇÒ»Ñù¡£
+			//getMethodåªèƒ½è·å–publicçš„æ–¹æ³•ï¼Œprivateçš„æ–¹æ³•éœ€è¦ä½¿ç”¨getDeclaredMethodæ¥è·å–ï¼Œå¹¶ä¸”è®¾ç½®setAccessible(true)æ‰å¯ä»¥è°ƒç”¨è®¿é—®ã€‚
+			//å‚æ•°å±æ€§ä¹Ÿæ˜¯ä¸€æ ·ã€‚
 			Method method = clazz.getDeclaredMethod("setName", String.class);
 			method.setAccessible(true);
 			
 			//Constructor strut = clazz.getConstructor(String.class,Integer.class);
-			//getConstructorÖ»ÄÜ»ñÈ¡publicµÄ¹¹Ôì·½·¨
+			//getConstructoråªèƒ½è·å–publicçš„æ„é€ æ–¹æ³•
 			Constructor strut = clazz.getDeclaredConstructor(String.class,Integer.class);
 			strut.setAccessible(true);
 			User3 user = (User3)strut.newInstance("bit4",19);
-			//µ÷ÓÃ×Ô¶¨Òå¹¹ÔìÆ÷µÄ·½·¨
-			Object x = method.invoke(user,"±ÈÌØ");//µÚÒ»¸ö²ÎÊıÊÇÀàµÄ¶ÔÏó¡£µÚ¶ş²ÎÊıÊÇº¯ÊıµÄ²ÎÊı
+			//è°ƒç”¨è‡ªå®šä¹‰æ„é€ å™¨çš„æ–¹æ³•
+			Object x = method.invoke(user,"æ¯”ç‰¹");//ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯ç±»çš„å¯¹è±¡ã€‚ç¬¬äºŒå‚æ•°æ˜¯å‡½æ•°çš„å‚æ•°
 			System.out.println(user.getName());
 			
 			
@@ -42,7 +42,7 @@ class User3{
 	
 	private User3() {}
     
-	private User3(String name,Integer age){ //¹¹Ôìº¯Êı£¬³õÊ¼»¯Ê±Ö´ĞĞ
+	private User3(String name,Integer age){ //æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ–æ—¶æ‰§è¡Œ
     	this.age = age;
     	this.name = name;
     }

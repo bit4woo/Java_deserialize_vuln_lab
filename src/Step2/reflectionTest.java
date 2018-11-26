@@ -7,16 +7,16 @@ public class reflectionTest {
 	public static void main(String[] args){
 		try {
 
-			//Class»ñÈ¡ÀàµÄ·½·¨Ò»:ÊµÀı¶ÔÏóµÄgetClass()·½·¨;
+			//Classè·å–ç±»çš„æ–¹æ³•ä¸€:å®ä¾‹å¯¹è±¡çš„getClass()æ–¹æ³•;
 			User testObject = new User("zhangshan",19);
 			Class Method1Class = testObject.getClass();
 			
-			//Class»ñÈ¡ÀàµÄ·½·¨¶ş:ÀàµÄ.class(×î°²È«/ĞÔÄÜ×îºÃ)ÊôĞÔ;ÓĞµãÀàËÆpythonµÄgetattr()¡£javaÖĞÃ¿¸öÀàĞÍ¶¼ÓĞclass ÊôĞÔ.
+			//Classè·å–ç±»çš„æ–¹æ³•äºŒ:ç±»çš„.class(æœ€å®‰å…¨/æ€§èƒ½æœ€å¥½)å±æ€§;æœ‰ç‚¹ç±»ä¼¼pythonçš„getattr()ã€‚javaä¸­æ¯ä¸ªç±»å‹éƒ½æœ‰class å±æ€§.
 			Class Method2Class = User.class;
 			
-			//Class¶ÔÏóµÄ»ñÈ¡·½·¨Èı:ÔËÓÃClass.forName(String className)¶¯Ì¬¼ÓÔØÀà,classNameĞèÒªÊÇÀàµÄÈ«ÏŞ¶¨Ãû(×î³£ÓÃ).
-			//ÕâÖÖ·½·¨Ò²×îÈİÒ×Àí½â£¬Í¨¹ıÀàÃû(jar°üÖĞµÄÍêÕûnamespace)¾Í¿ÉÒÔµ÷ÓÃÆäÖĞµÄ·½·¨£¬Ò²×î·ûºÏÎÒÃÇĞèÒªµÄÊ¹ÓÃ³¡¾°.
-			//j2eeScan burp ²å¼ş¾ÍÊ¹ÓÃÁËÕâÖÖ·´Éä»úÖÆ¡£
+			//Classå¯¹è±¡çš„è·å–æ–¹æ³•ä¸‰:è¿ç”¨Class.forName(String className)åŠ¨æ€åŠ è½½ç±»,classNameéœ€è¦æ˜¯ç±»çš„å…¨é™å®šå(æœ€å¸¸ç”¨).
+			//è¿™ç§æ–¹æ³•ä¹Ÿæœ€å®¹æ˜“ç†è§£ï¼Œé€šè¿‡ç±»å(jaråŒ…ä¸­çš„å®Œæ•´namespace)å°±å¯ä»¥è°ƒç”¨å…¶ä¸­çš„æ–¹æ³•ï¼Œä¹Ÿæœ€ç¬¦åˆæˆ‘ä»¬éœ€è¦çš„ä½¿ç”¨åœºæ™¯.
+			//j2eeScan burp æ’ä»¶å°±ä½¿ç”¨äº†è¿™ç§åå°„æœºåˆ¶ã€‚
 			String path = "Step2.User"; 
 			Class Method3Class = Class.forName(path);
 			
@@ -26,28 +26,28 @@ public class reflectionTest {
 			//Method[] methods = Method2Class.getMethods();
 			//Method[] methods = Method3Class.getMethods();
 			
-			//Í¨¹ıÀàµÄclassÊôĞÔ»ñÈ¡¶ÔÓ¦µÄClassÀàµÄ¶ÔÏó£¬Í¨¹ıÕâ¸öClassÀàµÄ¶ÔÏó»ñÈ¡testÀàÖĞµÄ·½·¨¼¯ºÏ
+			//é€šè¿‡ç±»çš„classå±æ€§è·å–å¯¹åº”çš„Classç±»çš„å¯¹è±¡ï¼Œé€šè¿‡è¿™ä¸ªClassç±»çš„å¯¹è±¡è·å–testç±»ä¸­çš„æ–¹æ³•é›†åˆ
 
 			/* String name = Method3Class.getName();
 			 * int modifiers = Method3Class.getModifiers();
-			 * .....»¹ÓĞºÜ¶à·½·¨
-			 * Ò²¾ÍÊÇËµ£¬¶ÔÓÚÒ»¸öÈÎÒâµÄ¿ÉÒÔ·ÃÎÊµ½µÄÀà£¬ÎÒÃÇ¶¼ÄÜ¹»Í¨¹ıÒÔÉÏÕâĞ©·½·¨À´ÖªµÀËüµÄËùÓĞµÄ·½·¨ºÍÊôĞÔ£»
-			 * ÖªµÀÁËËüµÄ·½·¨ºÍÊôĞÔ£¬¾Í¿ÉÒÔµ÷ÓÃÕâĞ©·½·¨ºÍÊôĞÔ¡£
+			 * .....è¿˜æœ‰å¾ˆå¤šæ–¹æ³•
+			 * ä¹Ÿå°±æ˜¯è¯´ï¼Œå¯¹äºä¸€ä¸ªä»»æ„çš„å¯ä»¥è®¿é—®åˆ°çš„ç±»ï¼Œæˆ‘ä»¬éƒ½èƒ½å¤Ÿé€šè¿‡ä»¥ä¸Šè¿™äº›æ–¹æ³•æ¥çŸ¥é“å®ƒçš„æ‰€æœ‰çš„æ–¹æ³•å’Œå±æ€§ï¼›
+			 * çŸ¥é“äº†å®ƒçš„æ–¹æ³•å’Œå±æ€§ï¼Œå°±å¯ä»¥è°ƒç”¨è¿™äº›æ–¹æ³•å’Œå±æ€§ã€‚
 			 */
 			
-			//µ÷ÓÃUserÀàÖĞµÄ·½·¨
+			//è°ƒç”¨Userç±»ä¸­çš„æ–¹æ³•
 			
 			for(Method method : methods){
 			    if(method.getName().equals("getName")) {
 			    	System.out.println("method = " + method.getName());
 			    	
-			    	Class[] parameterTypes = method.getParameterTypes();//»ñÈ¡·½·¨µÄ²ÎÊı
-			    	Class returnType = method.getReturnType();//»ñÈ¡·½·¨µÄ·µ»ØÀàĞÍ
+			    	Class[] parameterTypes = method.getParameterTypes();//è·å–æ–¹æ³•çš„å‚æ•°
+			    	Class returnType = method.getReturnType();//è·å–æ–¹æ³•çš„è¿”å›ç±»å‹
 			    	try {
 			    		User user = (User)Method3Class.newInstance();
 			    		Object x = method.invoke(user);//user.getName();
 			    		//Object x = method.invoke(new test(1), 666);
-			    		//new¹Ø¼ü×ÖÄÜµ÷ÓÃÈÎºÎ¹¹Ôì·½·¨,newInstance()Ö»ÄÜµ÷ÓÃÎŞ²Î¹¹Ôì·½·¨¡£µ«·´ÉäµÄ³¡¾°ÖĞÊÇ²»Ó¦¸ÃÓĞ»ú»áÊ¹ÓÃnew¹Ø¼ü´ÊµÄ¡£
+			    		//newå…³é”®å­—èƒ½è°ƒç”¨ä»»ä½•æ„é€ æ–¹æ³•,newInstance()åªèƒ½è°ƒç”¨æ— å‚æ„é€ æ–¹æ³•ã€‚ä½†åå°„çš„åœºæ™¯ä¸­æ˜¯ä¸åº”è¯¥æœ‰æœºä¼šä½¿ç”¨newå…³é”®è¯çš„ã€‚
 			    		System.out.println(x);
 			    		
 					} catch (Exception e) {
@@ -60,8 +60,8 @@ public class reflectionTest {
 			
 			Method method = Method3Class.getMethod("setName",String.class);
 			User user1 = (User)Method3Class.getConstructor(String.class,Integer.class).newInstance("lisi",19);
-			//µ÷ÓÃ×Ô¶¨Òå¹¹ÔìÆ÷µÄ·½·¨
-			Object x = method.invoke(user1,"ÀîËÄ");//µÚÒ»¸ö²ÎÊıÊÇÀàµÄ¶ÔÏó¡£µÚ¶ş²ÎÊıÊÇº¯ÊıµÄ²ÎÊı
+			//è°ƒç”¨è‡ªå®šä¹‰æ„é€ å™¨çš„æ–¹æ³•
+			Object x = method.invoke(user1,"æå››");//ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯ç±»çš„å¯¹è±¡ã€‚ç¬¬äºŒå‚æ•°æ˜¯å‡½æ•°çš„å‚æ•°
 			System.out.println(user1.getName());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -76,7 +76,7 @@ class User{
 	
     public User() {}
     
-    public User(String name,Integer age){ //¹¹Ôìº¯Êı£¬³õÊ¼»¯Ê±Ö´ĞĞ
+    public User(String name,Integer age){ //æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ–æ—¶æ‰§è¡Œ
     	this.age = age;
     	this.name = name;
     }

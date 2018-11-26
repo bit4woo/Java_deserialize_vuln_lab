@@ -5,20 +5,20 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /*
- * ¶¯Ì¬´úÀíµÄ¼òµ¥demo£¬¶¯Ì¬´úÀíÀûÓÃÁË·´Éä»úÖÆ
- * Ã¿Ò»¸ö¶¯Ì¬´úÀíÀà¶¼»áÓĞÒ»¸öÓëÖ®¹ØÁªµÄinvocation handler¡£ÕæÕıµÄµ÷ÓÃÊÇÔÚinvocation handlerµÄinvoke()·½·¨ÀïÍê³ÉµÄ¡£
- * ¸ĞĞ»µûÀë·É¡¢ÁÎĞÂÏ²2Î»Ê¦¸µµÄÖ¸µ¼
+ * åŠ¨æ€ä»£ç†çš„ç®€å•demoï¼ŒåŠ¨æ€ä»£ç†åˆ©ç”¨äº†åå°„æœºåˆ¶
+ * æ¯ä¸€ä¸ªåŠ¨æ€ä»£ç†ç±»éƒ½ä¼šæœ‰ä¸€ä¸ªä¸ä¹‹å…³è”çš„invocation handlerã€‚çœŸæ­£çš„è°ƒç”¨æ˜¯åœ¨invocation handlerçš„invoke()æ–¹æ³•é‡Œå®Œæˆçš„ã€‚
+ * æ„Ÿè°¢è¶ç¦»é£ã€å»–æ–°å–œ2ä½å¸ˆå‚…çš„æŒ‡å¯¼
  */
 
 public class proxyTest2{
 	public static void main(String[] args) {
-		DynamicSubject sub=new RealDynamicSubject();//Ö®Ç°ÕâÀïsubµÄÀàĞÍÊÇRealDynamicSubject£¬²»¶Ô£»µ«ÊÇÎªÊ²Ã´ÄØ£¿
+		DynamicSubject sub=new RealDynamicSubject();//ä¹‹å‰è¿™é‡Œsubçš„ç±»å‹æ˜¯RealDynamicSubjectï¼Œä¸å¯¹ï¼›ä½†æ˜¯ä¸ºä»€ä¹ˆå‘¢ï¼Ÿ
 		Handler handler = new Handler(sub);
 		
 		//newProxyInstance(ClassLoader loader,Class<?>[] interfaces,InvocationHandler h)
-		//CLassLoader loader:Ö¸¶¨¶¯Ì¬´úÀíÀàµÄÀà¼ÓÔØÆ÷,¼´Éú³ÉÍê³ÉºóµÄ´úÀí¶ÔÏóµÄÀà¼ÓÔØÆ÷
-		//Class<?> interfaces:Ö¸¶¨¶¯Ì¬´úÀíÀàĞèÒªÊµÏÖµÄËùÓĞ½Ó¿Ú£¬ĞèÒª±»ÔöÇ¿µÄ½Ó¿ÚÁĞ±í£¨Êı¾İ£©
-		//InvocationHandler h: Ö¸¶¨Óë¶¯Ì¬´úÀíÀà¹ØÁªµÄ InvocationHandler¶ÔÏó£¬¾ßÌåµÄÔöÇ¿Âß¼­
+		//CLassLoader loader:æŒ‡å®šåŠ¨æ€ä»£ç†ç±»çš„ç±»åŠ è½½å™¨,å³ç”Ÿæˆå®Œæˆåçš„ä»£ç†å¯¹è±¡çš„ç±»åŠ è½½å™¨
+		//Class<?> interfaces:æŒ‡å®šåŠ¨æ€ä»£ç†ç±»éœ€è¦å®ç°çš„æ‰€æœ‰æ¥å£ï¼Œéœ€è¦è¢«å¢å¼ºçš„æ¥å£åˆ—è¡¨ï¼ˆæ•°æ®ï¼‰
+		//InvocationHandler h: æŒ‡å®šä¸åŠ¨æ€ä»£ç†ç±»å…³è”çš„ InvocationHandlerå¯¹è±¡ï¼Œå…·ä½“çš„å¢å¼ºé€»è¾‘
 		
 		DynamicSubject sub2 = (DynamicSubject)Proxy.newProxyInstance(DynamicSubject.class.getClassLoader(), new Class[]{DynamicSubject.class}, handler); 
 
@@ -26,7 +26,7 @@ public class proxyTest2{
 		
 		DynamicSubject sub4 = (DynamicSubject)Proxy.newProxyInstance(DynamicSubject.class.getClassLoader(), RealDynamicSubject.class.getInterfaces(), handler);
 		
-		//´ÓÉÏÃæµÄµ÷ÓÃ·½·¨¿ÉÖª£¬¿ÉÒÔ¶Ô²»Í¬µÄ¶ÔÏóÊ¹ÓÃÏàÍ¬µÄÄ£Ê½ÊµÏÖÀ´ÊµÏÖÆä´úÀí£¬Õâ¾ÍÊÇÏà¶Ô¾²Ì¬´úÀíµÄÓÅÊÆ¡£
+		//ä»ä¸Šé¢çš„è°ƒç”¨æ–¹æ³•å¯çŸ¥ï¼Œå¯ä»¥å¯¹ä¸åŒçš„å¯¹è±¡ä½¿ç”¨ç›¸åŒçš„æ¨¡å¼å®ç°æ¥å®ç°å…¶ä»£ç†ï¼Œè¿™å°±æ˜¯ç›¸å¯¹é™æ€ä»£ç†çš„ä¼˜åŠ¿ã€‚
 		
 		System.out.println("sub.getClass() = "+sub.getClass());
 		System.out.println("DynamicSubject.class = " +DynamicSubject.class);
@@ -40,14 +40,14 @@ public class proxyTest2{
 }
 
 interface DynamicSubject
-{//³éÏó½ÇÉ«£ºÍ¨¹ı½Ó¿Ú»ò³éÏóÀàÉùÃ÷ÕæÊµ½ÇÉ«ÊµÏÖµÄÒµÎñ·½·¨¡£×¢Òâ:¶¯Ì¬´úÀíÖ»ÄÜÊÇ½Ó¿Ú£¬·ñÔò´úÀíÀà×ª³É¸ÃÀàĞÍÊÂ»á±¨´í
-	//Àà±ÈÍøÂç´úÀí£¬±ÈÈçhttp´úÀí£¬¶¼Ö§³ÖhttpĞ­Òé
+{//æŠ½è±¡è§’è‰²ï¼šé€šè¿‡æ¥å£æˆ–æŠ½è±¡ç±»å£°æ˜çœŸå®è§’è‰²å®ç°çš„ä¸šåŠ¡æ–¹æ³•ã€‚æ³¨æ„:åŠ¨æ€ä»£ç†åªèƒ½æ˜¯æ¥å£ï¼Œå¦åˆ™ä»£ç†ç±»è½¬æˆè¯¥ç±»å‹äº‹ä¼šæŠ¥é”™
+	//ç±»æ¯”ç½‘ç»œä»£ç†ï¼Œæ¯”å¦‚httpä»£ç†ï¼Œéƒ½æ”¯æŒhttpåè®®
     abstract void request();
 }
 
 class RealDynamicSubject implements DynamicSubject
-{//ÕæÊµ½ÇÉ«£ºÊµÏÖ³éÏó½ÇÉ«£¬¶¨ÒåÕæÊµ½ÇÉ«ËùÒªÊµÏÖµÄÒµÎñÂß¼­£¬¹©´úÀíhandler´¦Àíµ÷ÓÃ¡£
-	//Àà±ÈÕæÊµµÄhttpÇëÇó
+{//çœŸå®è§’è‰²ï¼šå®ç°æŠ½è±¡è§’è‰²ï¼Œå®šä¹‰çœŸå®è§’è‰²æ‰€è¦å®ç°çš„ä¸šåŠ¡é€»è¾‘ï¼Œä¾›ä»£ç†handlerå¤„ç†è°ƒç”¨ã€‚
+	//ç±»æ¯”çœŸå®çš„httpè¯·æ±‚
        public RealDynamicSubject()
        {
        }
@@ -59,25 +59,25 @@ class RealDynamicSubject implements DynamicSubject
 }
  
 /**
- * ´¦ÀíÆ÷
+ * å¤„ç†å™¨
  */
 class Handler implements InvocationHandler{
-	private Object obj; //±»´úÀíµÄ¶ÔÏó£¨Ò²¾ÍÊÇÀÏ³ÌĞòÔ±ÊµÏÖµÄ¶ÔÏó£©£¬²»¹Ü¶ÔÏóÊÇÊ²Ã´ÀàĞÍ£»Ö®Ç°ÉùÃ÷³ÉRealDynamicSubject£¬²»Ó¦¸ÃÕâÃ´×ö
+	private Object obj; //è¢«ä»£ç†çš„å¯¹è±¡ï¼ˆä¹Ÿå°±æ˜¯è€ç¨‹åºå‘˜å®ç°çš„å¯¹è±¡ï¼‰ï¼Œä¸ç®¡å¯¹è±¡æ˜¯ä»€ä¹ˆç±»å‹ï¼›ä¹‹å‰å£°æ˜æˆRealDynamicSubjectï¼Œä¸åº”è¯¥è¿™ä¹ˆåš
     /**
-     * ËùÓĞµÄÁ÷³Ì¿ØÖÆ¶¼ÔÚinvoke·½·¨ÖĞ
-     * proxy£º´úÀíÀà
-     * method£ºÕıÔÚµ÷ÓÃµÄ·½·¨£¬·´Éä»úÖÆµ÷ÓÃº¯ÊıËù±ØĞë£¡
-     * args£º±»µ÷ÓÃ·½·¨µÄ²ÎÊıÁĞ±í£¬·´Éä»úÖÆµ÷ÓÃº¯ÊıËù±ØĞë£¡
+     * æ‰€æœ‰çš„æµç¨‹æ§åˆ¶éƒ½åœ¨invokeæ–¹æ³•ä¸­
+     * proxyï¼šä»£ç†ç±»
+     * methodï¼šæ­£åœ¨è°ƒç”¨çš„æ–¹æ³•ï¼Œåå°„æœºåˆ¶è°ƒç”¨å‡½æ•°æ‰€å¿…é¡»ï¼
+     * argsï¼šè¢«è°ƒç”¨æ–¹æ³•çš„å‚æ•°åˆ—è¡¨ï¼Œåå°„æœºåˆ¶è°ƒç”¨å‡½æ•°æ‰€å¿…é¡»ï¼
      */
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {//½Ó¿Ú±ØĞëÊµÏÖµÄ·½·¨£¬Ò²ÊÇÂß¼­ºËĞÄ
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {//æ¥å£å¿…é¡»å®ç°çš„æ–¹æ³•ï¼Œä¹Ÿæ˜¯é€»è¾‘æ ¸å¿ƒ
     	System.out.println("Do something before requesting: print log");
-    	Object xxx = method.invoke(this.obj, args);//Í¨¹ı·´Éä»úÖÆµ÷ÓÃÀÏ³ÌĞòÔ±µÄ¶ÔÏó´úÂë¡£
+    	Object xxx = method.invoke(this.obj, args);//é€šè¿‡åå°„æœºåˆ¶è°ƒç”¨è€ç¨‹åºå‘˜çš„å¯¹è±¡ä»£ç ã€‚
         System.out.println("Do something after requesting: print log");
         return xxx;
     }
     public Handler(Object obj) {
-    	//¹¹Ôìº¯Êı£¬°ÑÕæÊµ½ÇÉ«µÄÊµÀı´«µİ½øÀ´,Õâ¸ö´úÀíhandlerµÄÄ¿µÄ¾ÍÊÇÔöÇ¿Ëü£¬»òÕßËµĞèÒªµ÷ÓÃËüÀ´ÊµÏÖÖ÷ÒªµÄ¹¦ÄÜ¡£
+    	//æ„é€ å‡½æ•°ï¼ŒæŠŠçœŸå®è§’è‰²çš„å®ä¾‹ä¼ é€’è¿›æ¥,è¿™ä¸ªä»£ç†handlerçš„ç›®çš„å°±æ˜¯å¢å¼ºå®ƒï¼Œæˆ–è€…è¯´éœ€è¦è°ƒç”¨å®ƒæ¥å®ç°ä¸»è¦çš„åŠŸèƒ½ã€‚
         this.obj = obj;
     }
 }

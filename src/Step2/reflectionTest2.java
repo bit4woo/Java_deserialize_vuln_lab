@@ -11,8 +11,8 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /*
- * ÓĞÁË·´Éä·½·¨µÄ»ù´¡£¬ÔÙ½áºÏstep1£¬ÊµÏÖÒ»¸ö»ùÓÚ·´Éä·½·¨µÄµ¯¼ÆËãÆ÷¡£
- * ÔÚÊµÏÖÁËSerializableµÄÀàÖĞ£¬ Í¨¹ıÖØĞ´readObject·½·¨À´ÊµÏÖ
+ * æœ‰äº†åå°„æ–¹æ³•çš„åŸºç¡€ï¼Œå†ç»“åˆstep1ï¼Œå®ç°ä¸€ä¸ªåŸºäºåå°„æ–¹æ³•çš„å¼¹è®¡ç®—å™¨ã€‚
+ * åœ¨å®ç°äº†Serializableçš„ç±»ä¸­ï¼Œ é€šè¿‡é‡å†™readObjectæ–¹æ³•æ¥å®ç°
  */
 
 public class reflectionTest2 implements Serializable{
@@ -22,15 +22,15 @@ public class reflectionTest2 implements Serializable{
 	
     public reflectionTest2() {}
 	
-    public reflectionTest2(String name,Integer age){ //¹¹Ôìº¯Êı£¬³õÊ¼»¯Ê±Ö´ĞĞ
+    public reflectionTest2(String name,Integer age){ //æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ–æ—¶æ‰§è¡Œ
     	this.age = age;
     	this.name = name;
     }
     
     private void readObject(java.io.ObjectInputStream in) throws IOException,ClassNotFoundException{
-    	in.defaultReadObject();//µ÷ÓÃÔ­Ê¼µÄreadOject·½·¨
+    	in.defaultReadObject();//è°ƒç”¨åŸå§‹çš„readOjectæ–¹æ³•
     	
-    	try {//Í¨¹ı·´Éä·½·¨Ö´ĞĞÃüÁî£»
+    	try {//é€šè¿‡åå°„æ–¹æ³•æ‰§è¡Œå‘½ä»¤ï¼›
     	Method method= java.lang.Runtime.class.getMethod("exec", String.class);
     	Object result = method.invoke(Runtime.getRuntime(), "calc.exe");    
     	}
@@ -50,13 +50,13 @@ public class reflectionTest2 implements Serializable{
 
 class operation {
 	public static void ser(Object obj) {
-		//ĞòÁĞ»¯²Ù×÷£¬Ğ´Êı¾İ
+		//åºåˆ—åŒ–æ“ä½œï¼Œå†™æ•°æ®
 		try{
 	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("object.obj"));
-	        //ObjectOutputStreamÄÜ°ÑObjectÊä³ö³ÉByteÁ÷
-	        oos.writeObject(obj);//ĞòÁĞ»¯¹Ø¼üº¯Êı
-	        oos.flush();  //»º³åÁ÷ 
-	        oos.close(); //¹Ø±ÕÁ÷
+	        //ObjectOutputStreamèƒ½æŠŠObjectè¾“å‡ºæˆByteæµ
+	        oos.writeObject(obj);//åºåˆ—åŒ–å…³é”®å‡½æ•°
+	        oos.flush();  //ç¼“å†²æµ 
+	        oos.close(); //å…³é—­æµ
 	    } catch (FileNotFoundException e) 
 	    {        
 	        e.printStackTrace();
@@ -67,11 +67,11 @@ class operation {
 	}
 	
 	public static void deser() {
-		//·´ĞòÁĞ»¯²Ù×÷£¬¶ÁÈ¡Êı¾İ
+		//ååºåˆ—åŒ–æ“ä½œï¼Œè¯»å–æ•°æ®
 		try {
 			File file = new File("object.obj");
 			ObjectInputStream ois= new ObjectInputStream(new FileInputStream(file));
-			Object x = ois.readObject();//·´ĞòÁĞ»¯µÄ¹Ø¼üº¯Êı
+			Object x = ois.readObject();//ååºåˆ—åŒ–çš„å…³é”®å‡½æ•°
 			System.out.print(x);
 			ois.close();
 		} catch (FileNotFoundException e) {
